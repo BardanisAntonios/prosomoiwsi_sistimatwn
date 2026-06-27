@@ -1,0 +1,267 @@
+{UTF-8}
+FastFoodProfit= INTEG (
+	Clients*ProfitPerClient+ReturningClients*returningProfit,
+		0)
+	~	people*Week*$
+	~		|
+
+MMEAcceptance=
+	0.3
+	~	people [0,1,0.1]
+	~		|
+
+Clients= INTEG (
+	Converting*instoreConvincing,
+		0)
+	~	people
+	~		|
+
+ExtraProfit= INTEG (
+	Clients*0.2*ExtraProfitPerClient,
+		0)
+	~	people*Week*$
+	~		|
+
+ExtraProfitPerClient=
+	30
+	~	$ [5,100,5]
+	~		|
+
+instoreConvincing=
+	0.6
+	~	 [0,1,0.1]
+	~		|
+
+ProfitPerClient=
+	80
+	~	$ [5,100,5]
+	~		|
+
+LeafletsAcceptance=
+	0.3
+	~	people [0,1,0.1]
+	~		|
+
+webAcceptance=
+	0.3
+	~	people [0,1,0.1]
+	~		|
+
+ReturningClients= INTEG (
+	Clients*0.1,
+		0)
+	~	people*Week
+	~		|
+
+returningProfit=
+	40
+	~	$ [5,100,5]
+	~		|
+
+Potentional Clients= INTEG (
+	LeafletsClientAquisition*LeafletsAcceptance+MMEClientAquisition*MMEAcceptance+WebClientAquisition\
+		*webAcceptance-Converting,
+		0)
+	~	people
+	~		|
+
+Converting=
+	7
+	~	people [1,30,1]
+	~		|
+
+Leaflets= INTEG (
+	-LeafletsClientAquisition,
+		10000)
+	~	people*Week
+	~		|
+
+LeafletsClientAquisition=
+	30
+	~	people [0,50,1]
+	~		|
+
+MME= INTEG (
+	-MMEClientAquisition,
+		10000)
+	~	people*Week
+	~		|
+
+MMEClientAquisition=
+	30
+	~	people [0,50]
+	~		|
+
+Web= INTEG (
+	-WebClientAquisition,
+		10000)
+	~	people*Week
+	~		|
+
+WebClientAquisition=
+	30
+	~	people [0,50,1]
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Week
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Week
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Week [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Week [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,87,0
+10,1,Web,233,248,42,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,MME,132,427,42,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Leaflets,123,613,42,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Potentional Clients,632,429,53,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,5,7,1,100,0,0,22,0,192,0,-1--1--1,,1|(339,256)|
+1,6,7,4,4,0,0,22,0,192,0,-1--1--1,,1|(632,256)|
+11,7,0,411,256,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,8,WebClientAquisition,476,256,57,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,9,11,2,100,0,0,22,0,192,0,-1--1--1,,1|(231,427)|
+1,10,11,4,4,0,0,22,0,192,0,-1--1--1,,1|(439,427)|
+11,11,0,294,427,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,12,MMEClientAquisition,294,464,59,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,13,15,3,100,0,0,22,0,192,0,-1--1--1,,1|(237,610)|
+1,14,15,4,4,0,0,22,0,192,0,-1--1--1,,1|(632,610)|
+11,15,0,318,610,8,6,33,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,16,LeafletsClientAquisition,318,645,71,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,17,Clients,1095,418,51,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,18,20,4,100,0,0,22,0,192,0,-1--1--1,,1|(742,422)|
+1,19,20,17,4,0,0,22,0,192,0,-1--1--1,,1|(927,422)|
+11,20,0,805,422,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,21,Converting,805,452,50,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,22,ProfitPerClient,1206,343,60,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,23,webAcceptance,636,188,56,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,24,MMEAcceptance,430,352,60,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,25,LeafletsAcceptance,514,567,57,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,26,23,4,1,0,0,0,0,192,0,-1--1--1,,1|(701,315)|
+1,27,24,4,1,0,0,0,0,192,0,-1--1--1,,1|(540,367)|
+1,28,25,4,1,0,0,0,0,192,0,-1--1--1,,1|(554,480)|
+10,29,instoreConvincing,928,543,58,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,30,ExtraProfit,1446,265,48,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,31,ExtraProfitPerClient,1325,141,59,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,32,ReturningClients,1428,619,58,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,33,FastFoodProfit,1468,411,51,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,34,17,33,1,0,0,0,0,192,0,-1--1--1,,1|(1288,462)|
+1,35,29,17,1,0,0,0,0,192,0,-1--1--1,,1|(1026,500)|
+1,36,22,33,1,0,0,0,0,192,0,-1--1--1,,1|(1377,347)|
+1,37,31,30,1,0,0,0,0,192,0,-1--1--1,,1|(1439,171)|
+10,38,returningProfit,1553,548,57,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,39,32,33,1,0,0,0,0,192,0,-1--1--1,,1|(1426,512)|
+1,40,38,33,1,0,0,0,0,192,0,-1--1--1,,1|(1556,482)|
+1,41,17,30,1,0,0,0,0,192,0,-1--1--1,,1|(1167,253)|
+1,42,17,32,1,0,0,0,0,192,0,-1--1--1,,1|(1147,635)|
+12,43,0,1811,215,169,118,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+Potentional Clients,Graph
+12,44,0,1812,458,170,110,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+Clients,Graph
+12,45,0,331,806,230,84,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+FastFoodProfit,Graph
+12,46,0,895,824,225,93,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+ExtraProfit,Graph
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 2
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,54,0
+12,1,0,677,769,306,167,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+Potentional Clients,Graph
+12,2,0,1287,765,295,156,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+Clients,Graph
+12,3,0,1884,419,259,157,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+FastFoodProfit,Graph
+12,4,0,1873,764,291,157,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+ExtraProfit,Graph
+12,5,0,636,205,296,65,8,79,0,0,0,0,0,0,0,0,0,0,0,0
+MMEAcceptance,0,0,0.
+12,6,0,631,369,296,65,8,79,0,0,0,0,0,0,0,0,0,0,0,0
+LeafletsAcceptance,0,1,0.1
+12,7,0,640,515,296,65,8,79,0,0,0,0,0,0,0,0,0,0,0,0
+webAcceptance,0,1,0.1
+12,8,0,663,1027,272,58,8,79,0,0,0,0,0,0,0,0,0,0,0,0
+instoreConvincing,0,1,0.1
+12,9,0,1297,369,293,61,8,79,0,0,0,0,0,0,0,0,0,0,0,0
+ExtraProfitPerClient,5,100,5
+12,10,0,1284,517,293,61,8,79,0,0,0,0,0,0,0,0,0,0,0,0
+returningProfit,5,100,5
+12,11,0,1301,216,293,61,8,79,0,0,0,0,0,0,0,0,0,0,0,0
+ProfitPerClient,5,100,5
+12,12,0,1284,1084,297,160,8,15,0,0,2,0,0,0,0,0,0,0,0,0
+ReturningClients,Graph
+12,13,0,1930,1138,350,215,8,15,0,0,1,0,0,0,0,0,0,0,0,0
+Profit
+///---\\\
+:GRAPH Profit
+:TITLE Total Profit
+:SCALE
+:VAR FastFoodProfit
+:DATASET 
+:LINE-WIDTH 1
+:SCALE
+:VAR ExtraProfit
+:DATASET 
+:LINE-WIDTH 1
+:VAR Clients
+:DATASET 
+:LINE-WIDTH 1
+:SCALE
+:VAR ReturningClients
+:DATASET 
+:LINE-WIDTH 1
+:L<%^E!@
+1:modelview 3.vdfx
+4:Time
+5:Converting
+9:modelview 3
+19:54,1
+24:0
+25:100
+26:100
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:0
+72:0
+73:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Vensim Sans|12||0-0-0|0-0-0|-1--1--1|0-0-255|192-192-192|-1--1--1
